@@ -1,4 +1,6 @@
 import React from "react"
+import getStripe from "../../utils/stripejs"
+import { useShoppingCart, formatCurrencyString } from "use-shopping-cart"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActions from "@material-ui/core/CardActions"
@@ -21,35 +23,58 @@ const useStyles = makeStyles({
   },
 })
 
-const ProductCard = () => {
+const ProductCard = ({ node }) => {
   const classes = useStyles()
-  const bull = <span className={classes.bullet}>•</span>
+
+  const { addItem } = useShoppingCart()
+
+  const buyClicked = async () => {
+    const price = node.id
+    const stripe = await getStripe()
+    const { error } = await stripe.redirectToCheckout({
+      mode: "payment",
+      lineItems: [{ price, quantity: 1 }],
+      successUrl: `${window.location.origin}/success`,
+      cancelUrl: `${window.location.origin}`,
+    })
+    if (error) {
+      console.warn("Error:", error)
+    }
+  }
+
+  const productData = {
+    name: node.product.name,
+    sku: node.id,
+    price: node.unit_amount_decimal,
+    image: node.product.images[0],
+    currency: node.currency,
+  }
 
   return (
     <Card variant="outlined">
       <CardContent>
-        <CardMedia
-          style={{ height: "165px" }}
-          image={
-            "https://cdn.pixabay.com/photo/2017/08/02/01/34/pocket-watch-2569573_960_720.jpg"
-          }
-        />
+        <CardMedia style={{ height: "165px" }} image={node.product.images[0]} />
         <Typography
           className={classes.title}
           color="textSecondary"
           gutterBottom
         >
-          Silver Pocket Watch
+          {node.product.name}
         </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          £43.99
-        </Typography>
-        <Typography variant="body2" component="p">
-          Free UK delivery
+        <Typography variant="h6" component="h2" gutterBottom>
+          {`£${node.unit_amount_decimal / 100}`}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">View Item</Button>
+      </CardActions>
+      <CardActions>
+        <Button
+          onClick={() => addItem(productData)}
+          aria-label={`Add ${node.product.name} to your cart`}
+        >
+          BUY ME
+        </Button>
       </CardActions>
     </Card>
   )
