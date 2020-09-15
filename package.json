@@ -18,13 +18,17 @@
     "@material-ui/icons": "^4.9.1",
     "@stripe/stripe-js": "^1.9.0",
     "gatsby": "^2.24.54",
+    "gatsby-image": "^2.4.18",
     "gatsby-plugin-material-ui": "^2.1.10",
-    "gatsby-source-contentful": "^2.3.45",
+    "gatsby-plugin-react-helmet": "^3.3.11",
+    "gatsby-plugin-sharp": "^2.6.36",
     "gatsby-source-stripe": "^3.1.1",
     "gatsby-transformer-remark": "^2.8.34",
+    "gatsby-transformer-sharp": "^2.5.15",
     "normalize.css": "^8.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0",
     "use-shopping-cart": "^2.1.0"
   },
   "devDependencies": {

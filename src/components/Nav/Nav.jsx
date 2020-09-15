@@ -11,7 +11,6 @@ const Nav = () => {
     <header>
       <Typography variant="h1">Silver</Typography>
       <nav>
-        <hr />
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -24,7 +23,6 @@ const Nav = () => {
             </Link>
           </li>
         </ul>
-        <hr />
       </nav>
     </header>
   )

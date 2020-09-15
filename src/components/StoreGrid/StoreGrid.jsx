@@ -1,38 +1,9 @@
-import { Grid } from "@material-ui/core"
-import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
+import { graphql, useStaticQuery } from "gatsby"
+import { Grid } from "@material-ui/core"
 import ProductCard from "../ProductCard/ProductCard"
 
 const StoreGrid = () => {
-  // const data = useStaticQuery(
-  //   graphql`
-  //     query {
-  //       allContentfulProduct {
-  //         edges {
-  //           node {
-  //             id
-  //             price
-  //             quantity
-  //             slug
-  //             tags
-  //             productDescription {
-  //               productDescription
-  //             }
-  //             productName {
-  //               productName
-  //             }
-  //             website
-  //             featuredImage {
-  //               file {
-  //                 url
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   `
-  // )
   const data = useStaticQuery(
     graphql`
       query {
@@ -49,17 +20,32 @@ const StoreGrid = () => {
             currency
           }
         }
+        allStripeProduct {
+          nodes {
+            localFiles {
+              childImageSharp {
+                fluid(maxWidth: 780) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
       }
     `
   )
   return (
-    <Grid item container spacing={2} xs={12} sm={10} md={8}>
-      {data.allStripePrice.nodes.map(node => (
-        <Grid key={node.product.id} item xs={12} sm={6} md={4}>
-          {/* <a href={nodes.product.website}> */}
-          <a>
-            <ProductCard node={node} />
-          </a>
+    <Grid item container spacing={3} xs={12} sm={10} md={8}>
+      {data.allStripePrice.nodes.map((node, i) => (
+        <Grid key={node.product.id} item xs={12} sm={6} md={4} lg={3}>
+          {/* <a> */}
+          <ProductCard
+            node={node}
+            imgSrc={
+              data.allStripeProduct.nodes[i].localFiles[0].childImageSharp.fluid
+            }
+          />
+          {/* </a> */}
         </Grid>
       ))}
     </Grid>

@@ -1,13 +1,12 @@
 import React from "react"
-import getStripe from "../../utils/stripejs"
-import { useShoppingCart, formatCurrencyString } from "use-shopping-cart"
+import Img from "gatsby-image"
+import { useShoppingCart } from "use-shopping-cart"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActions from "@material-ui/core/CardActions"
 import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
-import CardMedia from "@material-ui/core/CardMedia"
 
 const useStyles = makeStyles({
   bullet: {
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
   },
 })
 
-const ProductCard = ({ node }) => {
+const ProductCard = ({ node, imgSrc }) => {
   const classes = useStyles()
 
   const { addItem } = useShoppingCart()
@@ -32,14 +31,14 @@ const ProductCard = ({ node }) => {
     name: node.product.name,
     sku: node.id,
     price: node.unit_amount_decimal,
-    image: node.product.images[0],
+    image: imgSrc,
     currency: node.currency,
   }
 
   return (
     <Card variant="outlined">
       <CardContent>
-        <CardMedia style={{ height: "165px" }} image={node.product.images[0]} />
+        <Img fluid={imgSrc} />
         <Typography
           className={classes.title}
           color="textSecondary"

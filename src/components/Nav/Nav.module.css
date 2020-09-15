@@ -19,17 +19,29 @@ h1 {
           justify-content: center;
 }
 
-nav ul {
+nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+nav ul {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-top: solid lightGrey 1px;
+  border-bottom: solid lightGrey 1px;
 }
 
 nav li {
@@ -40,7 +52,7 @@ nav li {
       -ms-flex-align: center;
           align-items: center;
   list-style: none;
-  margin: 0 20px;
+  margin: 0 16px;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
@@ -52,6 +64,15 @@ nav li:hover {
   background-color: lightpink;
 }
 
+nav li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 nav li span {
   display: inline-block;
   font-family: monospace;
@@ -59,7 +80,7 @@ nav li span {
   background-color: black;
   color: white;
   border-radius: 50%;
-  -webkit-transform: translate(-5px);
-          transform: translate(-5px);
+  -webkit-transform: translate(-5px, -5px);
+          transform: translate(-5px, -5px);
 }
 /*# sourceMappingURL=Nav.module.css.map */

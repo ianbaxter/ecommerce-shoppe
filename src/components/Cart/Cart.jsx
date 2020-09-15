@@ -1,11 +1,6 @@
-import {
-  Button,
-  CardMedia,
-  Container,
-  Grid,
-  Typography,
-} from "@material-ui/core"
+import { Button, Container, Grid, Typography } from "@material-ui/core"
 import React from "react"
+import Img from "gatsby-image"
 import { useShoppingCart } from "use-shopping-cart"
 
 const Cart = () => {
@@ -16,29 +11,15 @@ const Cart = () => {
     incrementItem,
   } = useShoppingCart()
 
-  //   const buyClicked = async () => {
-  //     const price = node.id
-  //     const stripe = await getStripe()
-  //     const { error } = await stripe.redirectToCheckout({
-  //       mode: "payment",
-  //       lineItems: [{ price, quantity: 1 }],
-  //       successUrl: `${window.location.origin}/success`,
-  //       cancelUrl: `${window.location.origin}`,
-  //     })
-  //     if (error) {
-  //       console.warn("Error:", error)
-  //     }
-  //   }
-
   const cart = []
 
   for (const sku in cartDetails) {
     const cartEntry = cartDetails[sku]
 
     cart.push(
-      <Grid container item spacing={3} xs={12}>
+      <Grid container item spacing={3} xs={12} key={cartEntry.sku}>
         <Grid item xs={2}>
-          <CardMedia style={{ height: "80px" }} image={cartEntry.image} />
+          <Img fluid={cartEntry.image} />
         </Grid>
         <Grid container item justify="center" xs={2}>
           <p>{cartEntry.name}</p>

@@ -8,7 +8,7 @@ export const wrapRootElement = ({ element }) => {
       mode="client-only"
       successUrl="http://localhost:8000/success"
       cancelUrl="http://localhost:8000"
-      stripe={getStripe}
+      stripe={getStripe()}
       currency="GBP"
       allowedCountries={["US", "GB", "CA"]}
       billingAddressCollection={true}
