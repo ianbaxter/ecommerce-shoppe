@@ -28,20 +28,6 @@ const ProductCard = ({ node }) => {
 
   const { addItem } = useShoppingCart()
 
-  const buyClicked = async () => {
-    const price = node.id
-    const stripe = await getStripe()
-    const { error } = await stripe.redirectToCheckout({
-      mode: "payment",
-      lineItems: [{ price, quantity: 1 }],
-      successUrl: `${window.location.origin}/success`,
-      cancelUrl: `${window.location.origin}`,
-    })
-    if (error) {
-      console.warn("Error:", error)
-    }
-  }
-
   const productData = {
     name: node.product.name,
     sku: node.id,
@@ -66,14 +52,13 @@ const ProductCard = ({ node }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View Item</Button>
-      </CardActions>
-      <CardActions>
         <Button
+          variant="outlined"
+          size="small"
           onClick={() => addItem(productData)}
           aria-label={`Add ${node.product.name} to your cart`}
         >
-          BUY ME
+          Add to Cart
         </Button>
       </CardActions>
     </Card>

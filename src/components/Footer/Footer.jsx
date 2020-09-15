@@ -10,22 +10,23 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    marginTop: "40px",
+    marginTop: "80px",
   },
   social: {
     height: "120px",
     display: "flex",
     alignItems: "center",
+    borderTop: "solid lightGrey 1px",
   },
   icon: {
     cursor: "pointer",
   },
   bottom: {
-    height: "120px",
+    height: "240px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: "lightGrey",
   },
 })
 
@@ -33,16 +34,14 @@ const Footer = () => {
   const classes = useStyles()
   return (
     <footer className={classes.footer}>
-      <section className={classes.social}>
-        <Grid container justify="center" spacing={4}>
-          <Grid item>
-            <InstagramIcon className={classes.icon} fontSize="large" />
-          </Grid>
-          <Grid item>
-            <Facebook className={classes.icon} fontSize="large" />
-          </Grid>
+      <Grid container justify="center" className={classes.social}>
+        <Grid item>
+          <InstagramIcon className={classes.icon} fontSize="large" />
         </Grid>
-      </section>
+        <Grid item>
+          <Facebook className={classes.icon} fontSize="large" />
+        </Grid>
+      </Grid>
       <section className={classes.bottom}>
         <Typography variant="body2" color="primary">
           © Lorem, ipsum dolor sit amet consectetur adipisicing elit.
