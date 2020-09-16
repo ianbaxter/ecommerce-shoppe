@@ -1,11 +1,37 @@
 import React from "react"
 import { useShoppingCart } from "use-shopping-cart"
-import { Divider, makeStyles, Typography } from "@material-ui/core"
+import { Box, Divider, makeStyles, Typography } from "@material-ui/core"
 import { ShoppingBasketOutlined } from "@material-ui/icons"
-import "./nav.module.css"
 import { Link } from "gatsby"
 
 const useStyles = makeStyles({
+  header: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    margin: "40px 0 20px 0",
+  },
+  ul: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    padding: "0",
+    margin: "8px auto",
+    "& > li": {
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      listStyle: "none",
+      margin: "0 16px",
+      padding: "5px",
+      borderRadius: "5px",
+      cursor: "pointer",
+      transition: "0.08s",
+      "&:hover": {
+        backgroundColor: "lightpink",
+      },
+    },
+  },
   carttotal: {
     position: "absolute",
     width: "12px",
@@ -26,13 +52,15 @@ const Nav = () => {
   const classes = useStyles()
   const { cartCount } = useShoppingCart()
   return (
-    <header>
-      <Typography variant="h1" gutterBottom>
-        Shop
-      </Typography>
+    <header className={classes.header}>
+      <Box mx={"auto"}>
+        <Typography variant="h1" gutterBottom>
+          Shop
+        </Typography>
+      </Box>
       <Divider variant="middle" />
       <nav>
-        <ul>
+        <ul className={classes.ul}>
           <li>
             <Link to="/">Shop</Link>
           </li>
