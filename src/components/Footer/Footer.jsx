@@ -7,26 +7,17 @@ import { Facebook } from "@material-ui/icons"
 const useStyles = makeStyles({
   footer: {
     width: "100%",
+    height: "400px",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     marginTop: "80px",
+    backgroundColor: "#333",
   },
   social: {
-    height: "120px",
-    display: "flex",
-    alignItems: "center",
-    borderTop: "solid lightGrey 1px",
-  },
-  icon: {
+    margin: "0 8px",
     cursor: "pointer",
-  },
-  bottom: {
-    height: "240px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "lightGrey",
+    color: "white",
   },
 })
 
@@ -34,19 +25,14 @@ const Footer = () => {
   const classes = useStyles()
   return (
     <footer className={classes.footer}>
-      <Grid container justify="center" className={classes.social}>
+      <Grid container justify="center">
         <Grid item>
-          <InstagramIcon className={classes.icon} fontSize="large" />
+          <InstagramIcon className={classes.social} fontSize="large" />
         </Grid>
         <Grid item>
-          <Facebook className={classes.icon} fontSize="large" />
+          <Facebook className={classes.social} fontSize="large" />
         </Grid>
       </Grid>
-      <section className={classes.bottom}>
-        <Typography variant="body2" color="primary">
-          © Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        </Typography>
-      </section>
     </footer>
   )
 }

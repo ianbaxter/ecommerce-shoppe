@@ -16,13 +16,13 @@ nav {
   ul {
     width: 100%;
     display: flex;
-    padding: 10px 0;
+    padding: 0;
+    margin: 8px auto;
     justify-content: center;
     align-items: center;
-    border-top: solid lightGrey 1px;
-    border-bottom: solid lightGrey 1px;
   }
   li {
+    position: relative;
     display: flex;
     align-items: center;
     list-style: none;
@@ -37,15 +37,6 @@ nav {
     a {
       display: flex;
       align-items: center;
-    }
-    span {
-      display: inline-block;
-      font-family: monospace;
-      padding: 3px;
-      background-color: black;
-      color: white;
-      border-radius: 50%;
-      transform: translate(-5px, -5px);
     }
   }
 }
