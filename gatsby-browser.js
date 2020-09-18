@@ -2,13 +2,12 @@ import React from "react"
 import { CartProvider } from "use-shopping-cart"
 import getStripe from "./src/utils/stripejs"
 import { ThemeProvider } from "@material-ui/core/styles"
-import "normalize.css"
-
-// Theinhardt
+import theme from "./src/styles/theme"
+import "./src/styles/styles.css"
 
 export const wrapRootElement = ({ element }) => {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <CartProvider
         mode="client-only"
         successUrl="http://localhost:8000/success"

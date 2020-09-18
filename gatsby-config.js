@@ -5,6 +5,14 @@ require("dotenv").config({
 module.exports = {
   plugins: [
     {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: ["Work Sans"],
+        },
+      },
+    },
+    {
       resolve: `gatsby-source-stripe`,
       options: {
         objects: ["Price", "Product", "Sku"],

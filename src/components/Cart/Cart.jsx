@@ -11,14 +11,12 @@ import Img from "gatsby-image"
 import { useShoppingCart } from "use-shopping-cart"
 import { Link } from "gatsby"
 import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined"
+import formatPrice from "../../utils/priceFormat"
 
 const useStyles = makeStyles({
   quantity: {
     display: "flex",
     alignItems: "center",
-  },
-  quantityBtn: {
-    width: "16px",
   },
   cart: {
     marginBottom: "80px",
@@ -45,36 +43,42 @@ const Cart = () => {
     const cartEntry = cartDetails[sku]
 
     cart.push(
-      <Container className={classes.marginVertical} key={cartEntry.sku}>
+      <Container key={cartEntry.sku}>
         <Grid container alignItems="center">
           <Grid item xs={2}>
             <Img fluid={cartEntry.image} />
           </Grid>
           <Grid container item justify="center" xs={2}>
-            <p>{cartEntry.name}</p>
+            <Typography>{cartEntry.name}</Typography>
           </Grid>
           <Grid container item justify="center" xs={2}>
-            <p>{`£${cartEntry.price / 100}`}</p>
+            <Typography>
+              {formatPrice(cartEntry.price, cartEntry.currency)}
+            </Typography>
           </Grid>
           <Grid container item justify="center" xs={2}>
-            <p>{cartEntry.formattedValue}</p>
+            <Typography>{cartEntry.formattedValue}</Typography>
           </Grid>
 
           <Grid container item justify="center" xs={3}>
             <Button
-              className={classes.quantityBtn}
               onClick={() => incrementItem(cartEntry.sku)}
               aria-label={`Add one ${cartEntry.name} to your cart`}
             >
-              <strong>+</strong>
+              <Typography>
+                <strong>+</strong>
+              </Typography>
             </Button>
-            <strong className={classes.quantity}>{cartEntry.quantity}</strong>
-
+            <Typography className={classes.quantity}>
+              {cartEntry.quantity}
+            </Typography>
             <Button
               onClick={() => decrementItem(cartEntry.sku)}
               aria-label={`Remove one ${cartEntry.name} from your cart`}
             >
-              <strong>-</strong>
+              <Typography>
+                <strong>-</strong>
+              </Typography>
             </Button>
           </Grid>
           <Grid container item justify="center" xs={1}>
@@ -82,7 +86,9 @@ const Cart = () => {
               onClick={() => removeItem(cartEntry.sku)}
               aria-label={`Remove ${cartEntry.name} from your cart`}
             >
-              <strong>x</strong>
+              <Typography>
+                <strong>x</strong>
+              </Typography>
             </Button>
           </Grid>
         </Grid>

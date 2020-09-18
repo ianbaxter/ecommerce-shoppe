@@ -1,5 +1,4 @@
 import React from "react"
-import "./index.css"
 import Cart from "../components/Cart/Cart"
 import Layout from "../components/Layout/Layout"
 

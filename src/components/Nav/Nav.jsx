@@ -34,14 +34,15 @@ const useStyles = makeStyles({
   },
   carttotal: {
     position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     width: "12px",
     height: "12px",
     borderRadius: "50%",
     padding: "6px",
     background: "black",
     color: "white",
-    fontSize: "10px",
-    fontWeight: "bold",
     top: "-12px",
     right: "-8px",
     textAlign: "center",
@@ -62,14 +63,20 @@ const Nav = () => {
       <nav>
         <ul className={classes.ul}>
           <li>
-            <Link to="/">Shop</Link>
+            <Link to="/">
+              <Typography>Shop</Typography>
+            </Link>
           </li>
-          <li>About</li>
+          <li>
+            <Typography>About</Typography>
+          </li>
           <li>
             <Link to="/cart">
               <ShoppingBasketOutlined />
               {cartCount > 0 && (
-                <div className={classes.carttotal}>{cartCount}</div>
+                <div className={classes.carttotal}>
+                  <Typography variant="body2">{cartCount}</Typography>
+                </div>
               )}
             </Link>
           </li>
