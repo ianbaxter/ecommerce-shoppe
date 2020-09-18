@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { Grid } from "@material-ui/core"
+import { Container, Grid } from "@material-ui/core"
 import ProductCard from "../ProductCard/ProductCard"
 
 const StoreGrid = () => {
@@ -24,7 +24,7 @@ const StoreGrid = () => {
           nodes {
             localFiles {
               childImageSharp {
-                fluid(maxWidth: 780) {
+                fluid(maxWidth: 893) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -35,20 +35,21 @@ const StoreGrid = () => {
     `
   )
   return (
-    <Grid item container spacing={3} xs={12} sm={10} md={8}>
-      {data.allStripePrice.nodes.map((node, i) => (
-        <Grid key={node.product.id} item xs={12} sm={6} md={4} lg={3}>
-          {/* <a> */}
-          <ProductCard
-            node={node}
-            imgSrc={
-              data.allStripeProduct.nodes[i].localFiles[0].childImageSharp.fluid
-            }
-          />
-          {/* </a> */}
-        </Grid>
-      ))}
-    </Grid>
+    <Container maxWidth="lg">
+      <Grid container spacing={3}>
+        {data.allStripePrice.nodes.map((node, i) => (
+          <Grid key={node.product.id} item xs={12} sm={6} md={4} lg={3}>
+            <ProductCard
+              node={node}
+              imgSrc={
+                data.allStripeProduct.nodes[i].localFiles[0].childImageSharp
+                  .fluid
+              }
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   )
 }
 

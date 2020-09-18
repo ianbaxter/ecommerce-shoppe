@@ -1,16 +1,12 @@
 import React from "react"
-import "normalize.css"
 import "./index.css"
 import StoreGrid from "../components/StoreGrid/StoreGrid"
-import Nav from "../components/Nav/Nav"
-import Footer from "../components/Footer/Footer"
+import Layout from "../components/Layout/Layout"
 
-export default function Home() {
+export default () => {
   return (
-    <div className="app">
-      <Nav />
+    <Layout>
       <StoreGrid />
-      <Footer />
-    </div>
+    </Layout>
   )
 }

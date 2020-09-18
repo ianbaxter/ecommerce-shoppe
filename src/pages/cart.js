@@ -1,16 +1,12 @@
 import React from "react"
-import "normalize.css"
 import "./index.css"
-import Nav from "../components/Nav/Nav"
-import Footer from "../components/Footer/Footer"
 import Cart from "../components/Cart/Cart"
+import Layout from "../components/Layout/Layout"
 
-export default function Home() {
+export default function CartPage() {
   return (
-    <div className="app">
-      <Nav />
+    <Layout>
       <Cart />
-      <Footer />
-    </div>
+    </Layout>
   )
 }

@@ -1,17 +1,15 @@
 import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import { Grid } from "@material-ui/core"
+import { Box, Grid } from "@material-ui/core"
 import InstagramIcon from "@material-ui/icons/Instagram"
 import { Facebook } from "@material-ui/icons"
 
 const useStyles = makeStyles({
   footer: {
-    width: "100%",
     height: "400px",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    marginTop: "80px",
+    flex: "flex-end",
+    alignItems: "center",
     backgroundColor: "#333",
   },
   social: {
@@ -24,7 +22,7 @@ const useStyles = makeStyles({
 const Footer = () => {
   const classes = useStyles()
   return (
-    <footer className={classes.footer}>
+    <Box component="footer" mt={10} className={classes.footer}>
       <Grid container justify="center">
         <Grid item>
           <InstagramIcon className={classes.social} fontSize="large" />
@@ -33,7 +31,7 @@ const Footer = () => {
           <Facebook className={classes.social} fontSize="large" />
         </Grid>
       </Grid>
-    </footer>
+    </Box>
   )
 }
 

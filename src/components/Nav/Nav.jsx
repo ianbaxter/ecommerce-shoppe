@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    margin: "40px 0 20px 0",
+    margin: "20px 0 40px 0",
   },
   ul: {
     width: "100%",
@@ -54,7 +54,7 @@ const Nav = () => {
   return (
     <header className={classes.header}>
       <Box mx={"auto"}>
-        <Typography variant="h1" gutterBottom>
+        <Typography variant="h2" gutterBottom>
           Shop
         </Typography>
       </Box>

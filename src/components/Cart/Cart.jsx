@@ -45,8 +45,8 @@ const Cart = () => {
     const cartEntry = cartDetails[sku]
 
     cart.push(
-      <Container className={classes.marginVertical}>
-        <Grid container alignItems="center" xs={12} key={cartEntry.sku}>
+      <Container className={classes.marginVertical} key={cartEntry.sku}>
+        <Grid container alignItems="center">
           <Grid item xs={2}>
             <Img fluid={cartEntry.image} />
           </Grid>
@@ -139,17 +139,21 @@ const Cart = () => {
           className={classes.cart}
           container
           direction={"column"}
-          spacing={4}
+          spacing={10}
         >
           <Grid container item justify="center">
-            <Typography variant="h4">Your Cart Is Empty</Typography>
+            <Typography variant="h4" gutterBottom>
+              Your Cart Is Empty
+            </Typography>
           </Grid>
           <Grid container item justify="center">
             <StoreOutlinedIcon fontSize="large" />
           </Grid>
           <Grid container item justify="center">
             <Link to="/">
-              <Button variant="outlined">Shop</Button>
+              <Button variant="outlined" size="large">
+                Shop
+              </Button>
             </Link>
           </Grid>
         </Grid>
