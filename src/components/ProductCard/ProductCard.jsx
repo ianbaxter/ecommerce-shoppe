@@ -8,9 +8,19 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import { Link } from "gatsby"
 import formatPrice from "../../utils/priceFormat"
-import { Box } from "@material-ui/core"
+import { Box, makeStyles } from "@material-ui/core"
 
 const ProductCard = ({ node, imgSrc }) => {
+  const useStyles = makeStyles({
+    noShadow: {
+      boxShadow: "none",
+    },
+    curved: {
+      borderRadius: "5px",
+    },
+  })
+  const classes = useStyles()
+
   const { addItem } = useShoppingCart()
 
   const productData = {
@@ -23,15 +33,13 @@ const ProductCard = ({ node, imgSrc }) => {
   }
 
   return (
-    <Card variant="outlined">
+    <Card className={classes.noShadow}>
       <Link to={`/product/${node.product.id.slice(5)}`} state={productData}>
         <CardContent>
-          <Img fluid={imgSrc} />
-          <Box pt={2}>
-            <Typography variant="h6" gutterBottom>
-              {node.product.name}
-            </Typography>
-            <Typography variant="body1" component="h2">
+          <Img className={classes.curved} fluid={imgSrc} />
+          <Box pt={1}>
+            <Typography variant="h6">{node.product.name}</Typography>
+            <Typography variant="body1">
               {formatPrice(node.unit_amount_decimal, node.currency)}
             </Typography>
           </Box>

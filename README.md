@@ -1,6 +1,6 @@
 # Shop
 
-An ecommerce shop built with Gatsby, React, GraphQL and Stripe.
+An ecommerce shop built with Gatsby, Material-UI, React, GraphQL and Stripe.
 
 ## Setup
 

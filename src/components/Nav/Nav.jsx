@@ -56,7 +56,7 @@ const Nav = () => {
     <header className={classes.header}>
       <Box mx={"auto"}>
         <Typography variant="h2" gutterBottom>
-          Shop
+          SHOPPE
         </Typography>
       </Box>
       <Divider variant="middle" />

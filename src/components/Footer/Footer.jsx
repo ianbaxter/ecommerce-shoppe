@@ -8,7 +8,6 @@ const useStyles = makeStyles({
   footer: {
     height: "400px",
     display: "flex",
-    flex: "flex-end",
     alignItems: "center",
     backgroundColor: "#333",
   },

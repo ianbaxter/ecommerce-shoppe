@@ -1,5 +1,5 @@
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core"
 import React from "react"
+import { Container, Grid, makeStyles, Typography } from "@material-ui/core"
 import Img from "gatsby-image"
 import { useShoppingCart } from "use-shopping-cart"
 import CardActions from "@material-ui/core/CardActions"
@@ -8,18 +8,22 @@ import Layout from "../components/Layout/Layout"
 import formatPrice from "../utils/priceFormat"
 
 export default function Product({ location: { state } }) {
-  const useStyles = makeStyles({})
+  const useStyles = makeStyles({
+    curved: {
+      borderRadius: "5px",
+    },
+  })
+  const classes = useStyles()
 
   const { addItem } = useShoppingCart()
-  const classes = useStyles()
   return (
     <Layout>
       <Container maxWidth="lg">
-        <Grid container justify="center" spacing={8}>
+        <Grid container justify="center" spacing={4}>
           <Grid item xs={12} sm={6}>
-            <Img fluid={state.image} />
+            <Img className={classes.curved} fluid={state.image} />
           </Grid>
-          <Grid container item direction="column" spacing={1} xs={12} sm={6}>
+          <Grid container item direction="column" spacing={2} xs={12} sm={6}>
             <Grid container item justify="center">
               <Typography variant="h4">{state.name}</Typography>
             </Grid>
@@ -41,7 +45,7 @@ export default function Product({ location: { state } }) {
               </CardActions>
             </Grid>
             <Grid container item justify="center">
-              <Typography variant="body2">{state.description}</Typography>
+              <Typography variant="body1">{state.description}</Typography>
             </Grid>
           </Grid>
         </Grid>

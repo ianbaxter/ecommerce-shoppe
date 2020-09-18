@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Container,
   Divider,
@@ -17,9 +18,6 @@ const useStyles = makeStyles({
   quantity: {
     display: "flex",
     alignItems: "center",
-  },
-  cart: {
-    marginBottom: "80px",
   },
   checkoutBtn: {
     marginTop: "40px",
@@ -92,7 +90,9 @@ const Cart = () => {
             </Button>
           </Grid>
         </Grid>
-        <Divider variant="middle" />
+        <Box mt={2} mb={2}>
+          <Divider variant="middle" />
+        </Box>
       </Container>
     )
   }
@@ -128,7 +128,9 @@ const Cart = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Divider variant="middle" />
+          <Box mb={2}>
+            <Divider variant="middle" />
+          </Box>
           {cart}
           <Grid className={classes.checkoutBtn} container justify="center">
             <Button
@@ -141,12 +143,7 @@ const Cart = () => {
           </Grid>
         </Container>
       ) : (
-        <Grid
-          className={classes.cart}
-          container
-          direction={"column"}
-          spacing={10}
-        >
+        <Grid container direction={"column"} spacing={4}>
           <Grid container item justify="center">
             <Typography variant="h4" gutterBottom>
               Your Cart Is Empty
