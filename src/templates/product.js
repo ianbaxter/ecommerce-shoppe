@@ -18,7 +18,7 @@ export default function Product({ data }) {
 
   const productData = {
     name: data.stripePrice.product.name,
-    sku: data.stripePrice.product.id,
+    sku: data.stripePrice.id,
     price: data.stripePrice.unit_amount_decimal,
     image: data.stripeProduct.localFiles[0].childImageSharp.fluid,
     currency: data.stripePrice.currency,
@@ -83,6 +83,7 @@ export const query = graphql`
         description
         id
       }
+      id
       unit_amount_decimal
       currency
     }
