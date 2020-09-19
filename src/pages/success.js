@@ -3,8 +3,12 @@ import { Link } from "gatsby"
 import { Container, Button, Grid, Typography } from "@material-ui/core"
 import CheckCircleIcon from "@material-ui/icons/CheckCircle"
 import Nav from "../components/Nav/Nav"
+import { useShoppingCart } from "use-shopping-cart"
 
 export default function Success() {
+  const { clearCart } = useShoppingCart()
+  clearCart()
+
   return (
     <Container>
       <Nav />
