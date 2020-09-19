@@ -17,6 +17,7 @@ const StoreGrid = () => {
               id
               name
             }
+            id
             unit_amount_decimal
             currency
           }
