@@ -10,8 +10,8 @@ export const wrapRootElement = ({ element }) => {
     <ThemeProvider theme={theme}>
       <CartProvider
         mode="client-only"
-        successUrl="http://localhost:8000/success"
-        cancelUrl="http://localhost:8000"
+        successUrl={process.env.SUCCESS_URL}
+        cancelUrl={process.env.CANCEL_URL}
         stripe={getStripe()}
         currency="GBP"
         allowedCountries={["US", "GB", "CA"]}
