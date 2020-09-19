@@ -117,7 +117,6 @@ const Cart = () => {
               </Grid>
             </Grid>
           )}
-
           <Box mb={3}>
             <Divider variant="middle" />
           </Box>
