@@ -9,14 +9,15 @@ const StoreGrid = () => {
       query {
         allStripePrice {
           nodes {
+            fields {
+              slug
+            }
             product {
               description
               id
-              images
               name
             }
             unit_amount_decimal
-            id
             currency
           }
         }

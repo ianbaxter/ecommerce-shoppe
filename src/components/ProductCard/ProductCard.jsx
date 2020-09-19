@@ -34,7 +34,7 @@ const ProductCard = ({ node, imgSrc }) => {
 
   return (
     <Card className={classes.noShadow}>
-      <Link to={`/product/${node.product.id.slice(5)}`} state={productData}>
+      <Link to={`/product/${node.fields.slug}`}>
         <CardContent>
           <Img className={classes.curved} fluid={imgSrc} />
           <Box pt={1}>
