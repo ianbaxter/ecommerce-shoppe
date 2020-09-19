@@ -39,10 +39,10 @@ const Cart = () => {
     cart.push(
       <Container key={cartEntry.sku}>
         <Grid container alignItems="center">
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={3}>
             <Img fluid={cartEntry.image} />
           </Grid>
-          <Grid container item justify="center" sm={2}>
+          <Grid container item justify="center" sm={3}>
             <Box ml={2}>
               <Typography>{cartEntry.name}</Typography>
             </Box>
@@ -52,10 +52,6 @@ const Cart = () => {
               {formatPrice(cartEntry.price, cartEntry.currency)}
             </Typography>
           </Grid>
-          <Grid container item justify="center" sm={2}>
-            <Typography>{cartEntry.formattedValue}</Typography>
-          </Grid>
-
           <Grid container item justify="center" sm={3}>
             <Button
               onClick={() => incrementItem(cartEntry.sku)}
@@ -82,9 +78,7 @@ const Cart = () => {
               onClick={() => removeItem(cartEntry.sku)}
               aria-label={`Remove ${cartEntry.name} from your cart`}
             >
-              <Typography>
-                <strong>x</strong>
-              </Typography>
+              <Typography>x</Typography>
             </Button>
           </Grid>
         </Grid>
@@ -100,37 +94,35 @@ const Cart = () => {
       {cartCount ? (
         <Container>
           <Grid container justify="center">
-            <Typography variant="h4" gutterBottom>
-              Your Cart
-            </Typography>
+            <Box mb={5}>
+              <Typography variant="h4">Your Cart</Typography>
+            </Box>
           </Grid>
-          <Grid container>
-            <Grid container item justify="center" xs={4}>
-              <Typography variant="body1" gutterBottom>
-                Product
-              </Typography>
+          {window.innerWidth > 599 && (
+            <Grid container>
+              <Grid container item justify="center" xs={6}>
+                <Typography variant="body1" gutterBottom>
+                  Product
+                </Typography>
+              </Grid>
+              <Grid container item justify="center" xs={2}>
+                <Typography variant="body1" gutterBottom>
+                  Price
+                </Typography>
+              </Grid>
+              <Grid container item justify="center" xs={3}>
+                <Typography variant="body1" gutterBottom>
+                  Quantity
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid container item justify="center" xs={2}>
-              <Typography variant="body1" gutterBottom>
-                Price
-              </Typography>
-            </Grid>
-            <Grid container item justify="center" xs={2}>
-              <Typography variant="body1" gutterBottom>
-                Total
-              </Typography>
-            </Grid>
-            <Grid container item justify="center" xs={3}>
-              <Typography variant="body1" gutterBottom>
-                Quantity
-              </Typography>
-            </Grid>
-          </Grid>
+          )}
+
           <Box mb={3}>
             <Divider variant="middle" />
           </Box>
           {cart}
-          <Box mt={5} maxWidth={480}>
+          <Box mt={5} maxWidth={400}>
             <Container>
               <Grid container spacing={1}>
                 <Grid item xs={6} sm={5}>
