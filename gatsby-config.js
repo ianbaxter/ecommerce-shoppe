@@ -3,6 +3,11 @@ require("dotenv").config({
 })
 
 module.exports = {
+  siteMetadata: {
+    title: `Shoppe`,
+    siteUrl: `https://eshoppe.netlify.app`,
+    description: `Example ecommerce site`,
+  },
   plugins: [
     {
       resolve: "gatsby-plugin-web-font-loader",

@@ -2,10 +2,12 @@ import React from "react"
 import { Link } from "gatsby"
 import { Container, Button, Grid, Typography } from "@material-ui/core"
 import Nav from "../components/Nav/Nav"
+import Head from "../components/Head/Head"
 
 export default function NotFound() {
   return (
     <Container>
+      <Head title="Page not found" />
       <Nav />
       <main>
         <Grid container justify="center" direction="column" spacing="4">

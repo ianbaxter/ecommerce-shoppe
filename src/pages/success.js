@@ -4,6 +4,7 @@ import { Container, Button, Grid, Typography } from "@material-ui/core"
 import CheckCircleIcon from "@material-ui/icons/CheckCircle"
 import Nav from "../components/Nav/Nav"
 import { useShoppingCart } from "use-shopping-cart"
+import Head from "../components/Head/Head"
 
 export default function Success() {
   const { clearCart } = useShoppingCart()
@@ -11,6 +12,7 @@ export default function Success() {
 
   return (
     <Container>
+      <Head title="Purchase successful" />
       <Nav />
       <main>
         <Grid container justify="center" direction="column" spacing="4">

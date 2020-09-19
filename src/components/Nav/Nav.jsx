@@ -6,13 +6,9 @@ import { Link } from "gatsby"
 
 const useStyles = makeStyles({
   header: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
     margin: "20px 0 40px 0",
   },
   ul: {
-    width: "100%",
     display: "flex",
     justifyContent: "center",
     padding: "0",
@@ -25,7 +21,6 @@ const useStyles = makeStyles({
       margin: "0 16px",
       padding: "5px",
       borderRadius: "5px",
-      cursor: "pointer",
       transition: "0.08s",
       "&:hover": {
         backgroundColor: "lightpink",
@@ -54,7 +49,7 @@ const Nav = () => {
   const { cartCount } = useShoppingCart()
   return (
     <header className={classes.header}>
-      <Box mx={"auto"}>
+      <Box textAlign="center">
         <Typography variant="h2" gutterBottom>
           SHOPPE
         </Typography>

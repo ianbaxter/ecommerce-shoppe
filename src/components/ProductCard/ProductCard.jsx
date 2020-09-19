@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import { Link } from "gatsby"
 import formatPrice from "../../utils/priceFormat"
-import { Box, makeStyles } from "@material-ui/core"
+import { Box, CardActionArea, makeStyles } from "@material-ui/core"
 
 const ProductCard = ({ node, imgSrc }) => {
   const useStyles = makeStyles({
@@ -35,21 +35,24 @@ const ProductCard = ({ node, imgSrc }) => {
   return (
     <Card className={classes.noShadow}>
       <Link to={`/product/${node.fields.slug}`}>
-        <CardContent>
-          <Img className={classes.curved} fluid={imgSrc} />
-          <Box pt={1}>
-            <Typography variant="h6">{node.product.name}</Typography>
-            <Typography variant="body1">
-              {formatPrice(node.unit_amount_decimal, node.currency)}
-            </Typography>
-          </Box>
-        </CardContent>
+        <CardActionArea>
+          <CardContent>
+            <Img className={classes.curved} fluid={imgSrc} />
+            <Box pt={1}>
+              <Typography variant="h6">{node.product.name}</Typography>
+              <Typography variant="body1">
+                {formatPrice(node.unit_amount_decimal, node.currency)}
+              </Typography>
+            </Box>
+          </CardContent>
+        </CardActionArea>
+      </Link>
+      <Box pl={1}>
         <CardActions>
           <Button
             variant="outlined"
             size="small"
             onClick={e => {
-              e.preventDefault()
               addItem(productData)
             }}
             aria-label={`Add ${node.product.name} to your cart`}
@@ -57,7 +60,7 @@ const ProductCard = ({ node, imgSrc }) => {
             Add to Cart
           </Button>
         </CardActions>
-      </Link>
+      </Box>
     </Card>
   )
 }

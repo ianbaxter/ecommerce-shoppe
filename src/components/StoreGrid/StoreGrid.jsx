@@ -1,9 +1,17 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { Container, Grid } from "@material-ui/core"
+import { Container, Grid, makeStyles, Typography } from "@material-ui/core"
 import ProductCard from "../ProductCard/ProductCard"
 
 const StoreGrid = () => {
+  const useStyles = makeStyles({
+    title: {
+      textDecoration: "underline",
+      marginLeft: "16px",
+    },
+  })
+  const classes = useStyles()
+
   const data = useStaticQuery(
     graphql`
       query {
@@ -38,7 +46,10 @@ const StoreGrid = () => {
   )
   return (
     <Container maxWidth="lg">
-      <Grid container spacing={3}>
+      <Typography className={classes.title} variant="subtitle1">
+        All Products
+      </Typography>
+      <Grid container spacing={2}>
         {data.allStripePrice.nodes.map((node, i) => (
           <Grid key={node.product.id} item xs={12} sm={6} md={4} lg={3}>
             <ProductCard

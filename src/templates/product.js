@@ -7,11 +7,15 @@ import CardActions from "@material-ui/core/CardActions"
 import Button from "@material-ui/core/Button"
 import Layout from "../components/Layout/Layout"
 import formatPrice from "../utils/priceFormat"
+import Head from "../components/Head/Head"
 
 export default function Product({ data }) {
   const useStyles = makeStyles({
     curved: {
       borderRadius: "5px",
+    },
+    centerText: {
+      textAlign: "center",
     },
   })
   const classes = useStyles()
@@ -28,8 +32,9 @@ export default function Product({ data }) {
   const { addItem } = useShoppingCart()
   return (
     <Layout>
+      <Head title={data.stripePrice.product.name} />
       <Container maxWidth="lg">
-        <Grid container justify="center" spacing={4}>
+        <Grid container justify="center" spacing={3}>
           <Grid item xs={12} sm={6}>
             <Img
               className={classes.curved}
@@ -37,18 +42,20 @@ export default function Product({ data }) {
             />
           </Grid>
           <Grid container item direction="column" spacing={2} xs={12} sm={6}>
-            <Grid container item justify="center">
-              <Typography variant="h4">
-                {data.stripePrice.product.name}
-              </Typography>
-            </Grid>
-            <Grid container item justify="center">
-              <Typography variant="body1">
-                {formatPrice(
-                  data.stripePrice.unit_amount_decimal,
-                  data.stripePrice.currency
-                )}
-              </Typography>
+            <Grid container item spacing={1}>
+              <Grid container item justify="center">
+                <Typography className={classes.centerText} variant="h4">
+                  {data.stripePrice.product.name}
+                </Typography>
+              </Grid>
+              <Grid container item justify="center">
+                <Typography variant="body1">
+                  {formatPrice(
+                    data.stripePrice.unit_amount_decimal,
+                    data.stripePrice.currency
+                  )}
+                </Typography>
+              </Grid>
             </Grid>
             <Grid container item justify="center">
               <CardActions>
@@ -62,7 +69,7 @@ export default function Product({ data }) {
                 </Button>
               </CardActions>
             </Grid>
-            <Grid container item justify="center">
+            <Grid container item>
               <Typography variant="body1">
                 {data.stripePrice.product.description}
               </Typography>
