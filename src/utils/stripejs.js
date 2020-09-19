@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js"
 let stripePromise
 const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.STRIPE_API_PUBLIC)
+    stripePromise = loadStripe(process.env.GATSBY_STRIPE_API_PUBLIC)
   }
   return stripePromise
 }
