@@ -68,9 +68,6 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Typography>About</Typography>
-          </li>
-          <li>
             <Link to="/cart">
               <ShoppingBasketOutlined />
               {cartCount > 0 && (

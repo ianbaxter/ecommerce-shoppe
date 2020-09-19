@@ -6,7 +6,7 @@ import { Facebook } from "@material-ui/icons"
 
 const useStyles = makeStyles({
   footer: {
-    height: "400px",
+    height: "600px",
     display: "flex",
     alignItems: "center",
     backgroundColor: "#333",

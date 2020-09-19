@@ -15,12 +15,9 @@ import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined"
 import formatPrice from "../../utils/priceFormat"
 
 const useStyles = makeStyles({
-  quantity: {
+  centerQuantity: {
     display: "flex",
     alignItems: "center",
-  },
-  checkoutBtn: {
-    marginTop: "40px",
   },
 })
 
@@ -30,35 +27,36 @@ const Cart = () => {
     redirectToCheckout,
     cartDetails,
     cartCount,
+    totalPrice,
     decrementItem,
     incrementItem,
     removeItem,
   } = useShoppingCart()
 
   const cart = []
-
   for (const sku in cartDetails) {
     const cartEntry = cartDetails[sku]
-
     cart.push(
       <Container key={cartEntry.sku}>
         <Grid container alignItems="center">
-          <Grid item xs={2}>
+          <Grid item xs={12} sm={2}>
             <Img fluid={cartEntry.image} />
           </Grid>
-          <Grid container item justify="center" xs={2}>
-            <Typography>{cartEntry.name}</Typography>
+          <Grid container item justify="center" sm={2}>
+            <Box ml={2}>
+              <Typography>{cartEntry.name}</Typography>
+            </Box>
           </Grid>
-          <Grid container item justify="center" xs={2}>
+          <Grid container item justify="center" sm={2}>
             <Typography>
               {formatPrice(cartEntry.price, cartEntry.currency)}
             </Typography>
           </Grid>
-          <Grid container item justify="center" xs={2}>
+          <Grid container item justify="center" sm={2}>
             <Typography>{cartEntry.formattedValue}</Typography>
           </Grid>
 
-          <Grid container item justify="center" xs={3}>
+          <Grid container item justify="center" sm={3}>
             <Button
               onClick={() => incrementItem(cartEntry.sku)}
               aria-label={`Add one ${cartEntry.name} to your cart`}
@@ -67,7 +65,7 @@ const Cart = () => {
                 <strong>+</strong>
               </Typography>
             </Button>
-            <Typography className={classes.quantity}>
+            <Typography className={classes.centerQuantity}>
               {cartEntry.quantity}
             </Typography>
             <Button
@@ -79,7 +77,7 @@ const Cart = () => {
               </Typography>
             </Button>
           </Grid>
-          <Grid container item justify="center" xs={1}>
+          <Grid container item justify="center" sm={1}>
             <Button
               onClick={() => removeItem(cartEntry.sku)}
               aria-label={`Remove ${cartEntry.name} from your cart`}
@@ -90,7 +88,7 @@ const Cart = () => {
             </Button>
           </Grid>
         </Grid>
-        <Box mt={2} mb={2}>
+        <Box mt={2} mb={3}>
           <Divider variant="middle" />
         </Box>
       </Container>
@@ -128,19 +126,49 @@ const Cart = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Box mb={2}>
+          <Box mb={3}>
             <Divider variant="middle" />
           </Box>
           {cart}
-          <Grid className={classes.checkoutBtn} container justify="center">
-            <Button
-              variant="outlined"
-              disabled={cartCount === 0}
-              onClick={() => redirectToCheckout()}
-            >
-              Checkout
-            </Button>
-          </Grid>
+          <Box mt={5} maxWidth={480}>
+            <Container>
+              <Grid container spacing={1}>
+                <Grid item xs={6} sm={5}>
+                  <Typography variant="subtitle1">Subtotal:</Typography>
+                </Grid>
+                <Grid item xs={6} sm={5}>
+                  <Typography variant="subtitle1">
+                    {formatPrice(totalPrice)}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} sm={5}>
+                  <Typography variant="subtitle1">Shipping:</Typography>
+                </Grid>
+                <Grid item xs={6} sm={5}>
+                  <Typography variant="subtitle1">Free Shipping</Typography>
+                </Grid>
+                <Grid item xs={6} sm={5}>
+                  <Typography variant="subtitle1">Total:</Typography>
+                </Grid>
+                <Grid item xs={6} sm={5}>
+                  <Typography variant="subtitle1">
+                    {formatPrice(totalPrice)}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Container>
+            <Container>
+              <Box mt={5}>
+                <Button
+                  variant="outlined"
+                  disabled={cartCount === 0}
+                  onClick={() => redirectToCheckout()}
+                >
+                  Checkout
+                </Button>
+              </Box>
+            </Container>
+          </Box>
         </Container>
       ) : (
         <Grid container direction={"column"} spacing={4}>
