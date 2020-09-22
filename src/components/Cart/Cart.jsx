@@ -15,9 +15,13 @@ import StoreOutlinedIcon from "@material-ui/icons/StoreOutlined"
 import formatPrice from "../../utils/priceFormat"
 
 const useStyles = makeStyles({
-  centerQuantity: {
-    display: "flex",
-    alignItems: "center",
+  link: {
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
+  bold: {
+    fontWeight: "bold",
   },
 })
 
@@ -47,12 +51,14 @@ const Cart = () => {
           <Grid container item justify="center" sm={3}>
             <Link to={`/product/${cartEntry.description}`}>
               <Box ml={2}>
-                <Typography>{cartEntry.name}</Typography>
+                <Typography className={classes.link} variant="h6">
+                  {cartEntry.name}
+                </Typography>
               </Box>
             </Link>
           </Grid>
           <Grid container item justify="center" sm={2}>
-            <Typography>
+            <Typography variant="h6">
               {formatPrice(cartEntry.price, cartEntry.currency)}
             </Typography>
           </Grid>
@@ -61,18 +67,18 @@ const Cart = () => {
               onClick={() => incrementItem(cartEntry.sku)}
               aria-label={`Add one ${cartEntry.name} to your cart`}
             >
-              <Typography>
+              <Typography variant="h6">
                 <strong>+</strong>
               </Typography>
             </Button>
-            <Typography className={classes.centerQuantity}>
-              {cartEntry.quantity}
-            </Typography>
+            <Box alignSelf="center">
+              <Typography variant="h6">{cartEntry.quantity}</Typography>
+            </Box>
             <Button
               onClick={() => decrementItem(cartEntry.sku)}
               aria-label={`Remove one ${cartEntry.name} from your cart`}
             >
-              <Typography>
+              <Typography variant="h6">
                 <strong>-</strong>
               </Typography>
             </Button>
@@ -82,7 +88,7 @@ const Cart = () => {
               onClick={() => removeItem(cartEntry.sku)}
               aria-label={`Remove ${cartEntry.name} from your cart`}
             >
-              <Typography>x</Typography>
+              <Typography variant="h6">x</Typography>
             </Button>
           </Grid>
         </Grid>
@@ -105,17 +111,17 @@ const Cart = () => {
           {window.innerWidth > 599 && (
             <Grid container>
               <Grid container item justify="center" xs={6}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                   Product
                 </Typography>
               </Grid>
               <Grid container item justify="center" xs={2}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                   Price
                 </Typography>
               </Grid>
               <Grid container item justify="center" xs={3}>
-                <Typography variant="body1" gutterBottom>
+                <Typography variant="h6" gutterBottom>
                   Quantity
                 </Typography>
               </Grid>
@@ -125,30 +131,38 @@ const Cart = () => {
             <Divider variant="middle" />
           </Box>
           {cart}
-          <Box mt={5} maxWidth={400}>
+          <Box mt={5} maxWidth={332}>
             <Container>
               <Grid container spacing={1}>
-                <Grid item xs={6} sm={5}>
-                  <Typography variant="subtitle1">Subtotal:</Typography>
+                <Grid item xs={6}>
+                  <Typography variant="h6">Subtotal:</Typography>
                 </Grid>
-                <Grid item xs={6} sm={5}>
-                  <Typography variant="subtitle1">
-                    {formatPrice(totalPrice)}
+                <Grid item xs={6}>
+                  <Box textAlign="right">
+                    <Typography variant="h6">
+                      {formatPrice(totalPrice)}
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography variant="h6">Shipping:</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Box textAlign="right">
+                    <Typography variant="h6">Free</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className={classes.bold} variant="h6">
+                    Total:
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={5}>
-                  <Typography variant="subtitle1">Shipping:</Typography>
-                </Grid>
-                <Grid item xs={6} sm={5}>
-                  <Typography variant="subtitle1">Free Shipping</Typography>
-                </Grid>
-                <Grid item xs={6} sm={5}>
-                  <Typography variant="subtitle1">Total:</Typography>
-                </Grid>
-                <Grid item xs={6} sm={5}>
-                  <Typography variant="subtitle1">
-                    {formatPrice(totalPrice)}
-                  </Typography>
+                <Grid item xs={6}>
+                  <Box textAlign="right">
+                    <Typography className={classes.bold} variant="h6">
+                      {formatPrice(totalPrice)}
+                    </Typography>
+                  </Box>
                 </Grid>
               </Grid>
             </Container>
@@ -156,6 +170,8 @@ const Cart = () => {
               <Box mt={5}>
                 <Button
                   variant="outlined"
+                  size="large"
+                  fullWidth
                   disabled={cartCount === 0}
                   onClick={() => redirectToCheckout()}
                 >
