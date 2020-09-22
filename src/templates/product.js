@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { graphql } from "gatsby"
 import { Box, Container, Grid, makeStyles, Typography } from "@material-ui/core"
 import Img from "gatsby-image"
@@ -24,8 +24,24 @@ export default function Product({ data }) {
   const classes = useStyles()
 
   const [added, setAdded] = useState(false)
+  const addedTimer = useRef(null)
+
+  useEffect(() => {
+    // cancel add to basket timer on unmount
+    return () => {
+      clearTimeout(addedTimer.current)
+    }
+  }, [])
 
   const { addItem } = useShoppingCart()
+
+  const addToCart = () => {
+    addItem(productData)
+    setAdded(true)
+    addedTimer.current = setTimeout(() => {
+      setAdded(false)
+    }, 1500)
+  }
 
   const productData = {
     name: data.stripePrice.product.name,
@@ -33,15 +49,7 @@ export default function Product({ data }) {
     price: data.stripePrice.unit_amount_decimal,
     image: data.stripeProduct.localFiles[0].childImageSharp.fluid,
     currency: data.stripePrice.currency,
-    description: data.stripePrice.product.description,
-  }
-
-  const addToCart = () => {
-    addItem(productData)
-    setAdded(true)
-    setTimeout(() => {
-      setAdded(false)
-    }, 1500)
+    description: data.stripePrice.fields.slug,
   }
 
   return (
@@ -108,6 +116,9 @@ export default function Product({ data }) {
 export const query = graphql`
   query($slug: String!) {
     stripePrice(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       product {
         images
         name

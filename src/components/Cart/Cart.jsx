@@ -40,12 +40,16 @@ const Cart = () => {
       <Container key={cartEntry.sku}>
         <Grid container alignItems="center">
           <Grid item xs={12} sm={3}>
-            <Img fluid={cartEntry.image} />
+            <Link to={`/product/${cartEntry.description}`}>
+              <Img fluid={cartEntry.image} />
+            </Link>
           </Grid>
           <Grid container item justify="center" sm={3}>
-            <Box ml={2}>
-              <Typography>{cartEntry.name}</Typography>
-            </Box>
+            <Link to={`/product/${cartEntry.description}`}>
+              <Box ml={2}>
+                <Typography>{cartEntry.name}</Typography>
+              </Box>
+            </Link>
           </Grid>
           <Grid container item justify="center" sm={2}>
             <Typography>
