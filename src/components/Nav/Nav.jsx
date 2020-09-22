@@ -1,6 +1,6 @@
 import React from "react"
 import { useShoppingCart } from "use-shopping-cart"
-import { Box, Divider, makeStyles, Typography } from "@material-ui/core"
+import { Badge, Box, Divider, makeStyles, Typography } from "@material-ui/core"
 import { ShoppingBasketOutlined } from "@material-ui/icons"
 import { Link } from "gatsby"
 
@@ -14,33 +14,15 @@ const useStyles = makeStyles({
     padding: "0",
     margin: "8px auto",
     "& > li": {
-      position: "relative",
-      display: "flex",
-      alignItems: "center",
       listStyle: "none",
       margin: "0 16px",
       padding: "5px",
       borderRadius: "5px",
-      transition: "0.08s",
+      transition: "0.12s",
       "&:hover": {
-        backgroundColor: "lightpink",
+        backgroundColor: "rgb(239, 239, 239)",
       },
     },
-  },
-  carttotal: {
-    position: "absolute",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "12px",
-    height: "12px",
-    borderRadius: "50%",
-    padding: "6px",
-    background: "black",
-    color: "white",
-    top: "-12px",
-    right: "-8px",
-    textAlign: "center",
   },
 })
 
@@ -50,9 +32,11 @@ const Nav = () => {
   return (
     <header className={classes.header}>
       <Box textAlign="center">
-        <Typography variant="h2" gutterBottom>
-          SHOPPE
-        </Typography>
+        <Link to="/">
+          <Typography variant="h2" gutterBottom>
+            SHOPPE
+          </Typography>
+        </Link>
       </Box>
       <Divider variant="middle" />
       <nav>
@@ -63,13 +47,10 @@ const Nav = () => {
             </Link>
           </li>
           <li>
-            <Link to="/cart">
-              <ShoppingBasketOutlined />
-              {cartCount > 0 && (
-                <div className={classes.carttotal}>
-                  <Typography variant="body2">{cartCount}</Typography>
-                </div>
-              )}
+            <Link to="/basket">
+              <Badge badgeContent={cartCount} color="primary" fullWidth>
+                <ShoppingBasketOutlined />
+              </Badge>
             </Link>
           </li>
         </ul>

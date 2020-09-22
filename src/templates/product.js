@@ -1,13 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core"
+import { Box, Container, Grid, makeStyles, Typography } from "@material-ui/core"
 import Img from "gatsby-image"
 import { useShoppingCart } from "use-shopping-cart"
-import CardActions from "@material-ui/core/CardActions"
 import Button from "@material-ui/core/Button"
 import Layout from "../components/Layout/Layout"
 import formatPrice from "../utils/priceFormat"
 import Head from "../components/Head/Head"
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded"
 
 export default function Product({ data }) {
   const useStyles = makeStyles({
@@ -17,8 +17,15 @@ export default function Product({ data }) {
     centerText: {
       textAlign: "center",
     },
+    fullWidth: {
+      width: "100%",
+    },
   })
   const classes = useStyles()
+
+  const [added, setAdded] = useState(false)
+
+  const { addItem } = useShoppingCart()
 
   const productData = {
     name: data.stripePrice.product.name,
@@ -29,7 +36,14 @@ export default function Product({ data }) {
     description: data.stripePrice.product.description,
   }
 
-  const { addItem } = useShoppingCart()
+  const addToCart = () => {
+    addItem(productData)
+    setAdded(true)
+    setTimeout(() => {
+      setAdded(false)
+    }, 1500)
+  }
+
   return (
     <Layout>
       <Head title={data.stripePrice.product.name} />
@@ -49,7 +63,7 @@ export default function Product({ data }) {
                 </Typography>
               </Grid>
               <Grid container item justify="center">
-                <Typography variant="body1">
+                <Typography variant="h6">
                   {formatPrice(
                     data.stripePrice.unit_amount_decimal,
                     data.stripePrice.currency
@@ -58,16 +72,26 @@ export default function Product({ data }) {
               </Grid>
             </Grid>
             <Grid container item justify="center">
-              <CardActions>
+              <Box pt={1} pb={1} className={classes.fullWidth}>
                 <Button
                   variant="outlined"
-                  size="small"
-                  onClick={() => addItem(productData)}
+                  size="large"
+                  fullWidth
+                  onClick={addToCart}
                   aria-label={`Add ${data.stripePrice.product.name} to your cart`}
                 >
-                  Add to Cart
+                  {added ? (
+                    <React.Fragment>
+                      Added to Basket
+                      <Box display="flex" alignItems="center" pl={1}>
+                        <CheckRoundedIcon />
+                      </Box>
+                    </React.Fragment>
+                  ) : (
+                    "Add to Basket"
+                  )}
                 </Button>
-              </CardActions>
+              </Box>
             </Grid>
             <Grid container item>
               <Typography variant="body1">

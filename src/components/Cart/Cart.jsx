@@ -95,7 +95,7 @@ const Cart = () => {
         <Container>
           <Grid container justify="center">
             <Box mb={5}>
-              <Typography variant="h4">Your Cart</Typography>
+              <Typography variant="h4">Your Basket</Typography>
             </Box>
           </Grid>
           {window.innerWidth > 599 && (
@@ -165,7 +165,7 @@ const Cart = () => {
         <Grid container direction={"column"} spacing={4}>
           <Grid container item justify="center">
             <Typography variant="h4" gutterBottom>
-              Your Cart Is Empty
+              Your Basket Is Empty
             </Typography>
           </Grid>
           <Grid container item justify="center">

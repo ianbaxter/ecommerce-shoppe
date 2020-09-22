@@ -10,4 +10,12 @@ export default createMuiTheme({
       "sans-serif",
     ].join(","),
   },
+  palette: {
+    primary: {
+      main: "#000000",
+    },
+    secondary: {
+      main: "#FFFFFF",
+    },
+  },
 })

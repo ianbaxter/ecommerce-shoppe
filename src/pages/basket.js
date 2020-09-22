@@ -6,7 +6,7 @@ import Layout from "../components/Layout/Layout"
 export default function CartPage() {
   return (
     <Layout>
-      <Head title="Shopping cart" />
+      <Head title="Shopping Basket" />
       <Cart />
     </Layout>
   )
